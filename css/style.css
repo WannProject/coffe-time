@@ -1,0 +1,954 @@
+:root {
+  --bg: #fce7d4;
+  --button: #a6877a;
+  --primary: #d3d3d3;
+  --main: #c68953;
+  --hover: #b32d33;
+  --text: #5f0d11;
+}
+/* todo font : Whisper,Afacad */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Style untuk scrollbar */
+body::-webkit-scrollbar {
+  width: 12px; /* Lebar scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--button); /* Warna bagian "thumb" scrollbar */
+  border-radius: 6px; /* Membuat ujung "thumb" lebih melengkung */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: var(
+    --primary
+  ); /* Warna latar belakang scrollbar di luar "thumb" */
+}
+
+body {
+  font-family: "Afacad", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Navbar start */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 7%;
+  background-color: rgba(
+    252,
+    231,
+    212,
+    0.752
+  ); /* Adjust the alpha value (0.7 in this example) */
+  border-bottom: 1px solid var(--text);
+  backdrop-filter: blur(3px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.navbar .navbar-logo {
+  font-family: "Whisper";
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.navbar .navbar-nav a {
+  color: var(--text);
+  display: inline-block;
+  font-size: 1.7rem;
+  margin: 0 1rem;
+}
+
+.navbar .navbar-nav a:hover {
+  color: #b32d33;
+}
+
+.navbar .navbar-nav a::after {
+  content: "";
+  display: block;
+  padding-bottom: 0.1rem;
+  border-bottom: 0.1rem solid var(--hover);
+  transform: scaleX(0);
+  transition: 0.2s linear;
+}
+
+.navbar .navbar-nav a:hover::after {
+  transform: scaleX(0.8);
+}
+
+.navbar .navbar-extra a {
+  color: var(--text);
+  margin: 0 0.5rem;
+  transition: 0.2s linear;
+}
+
+.navbar .navbar-extra a:hover {
+  color: var(--hover);
+}
+
+#hamburger-menu {
+  display: none;
+}
+
+/* navbar search form */
+.navbar .search-form {
+  position: absolute;
+  top: 100%;
+  right: 7%;
+  background-color: #fff;
+  width: 45rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-right: 2rem;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: 0.3s;
+}
+
+.navbar .search-form.active {
+  transform: scaleY(1);
+}
+
+.navbar .search-form input {
+  height: 100%;
+  width: 100%;
+  font-size: 1.6rem;
+  color: var(--text);
+  padding: 1rem;
+}
+
+.navbar .search-form label {
+  cursor: pointer;
+  font-size: 2rem;
+  margin-right: 1.5rem;
+  color: var(--text);
+}
+/* Navbar end */
+
+/* shooping cart start */
+#shopping-cart-button {
+  position: relative;
+}
+
+#shopping-cart-button .quantity-badge {
+  display: inline-block;
+  padding: 1px 4px;
+  background-color: red;
+  color: var(--primary);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 0;
+  right: -10px;
+}
+.shopping-cart {
+  position: absolute;
+  top: 100%;
+  right: -100%;
+  height: 100vh;
+  max-height: 600px;
+  overflow-y: auto;
+  width: 35rem;
+  padding: 0 1.5rem;
+  color: var(--primary);
+  background-color: var(--text);
+  transition: 0.3s;
+}
+
+.shopping-cart.active {
+  right: 0;
+}
+
+.shopping-cart img {
+  height: 4rem;
+  border-radius: 5px;
+}
+
+.shopping-cart .cart-item {
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  border-bottom: 1.3px dashed var(--button);
+  position: relative;
+}
+
+.shopping-cart h3 {
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.shopping-cart h4 {
+  font-size: 1.6rem;
+  margin-top: -1rem;
+  text-align: center;
+}
+
+.shopping-cart .item-price {
+  font-size: 1.3rem;
+}
+
+.shopping-cart .cart-item .add-btn,
+.shopping-cart .cart-item .remove-btn {
+  display: inline-block;
+  padding: 2px 5px;
+  cursor: pointer;
+  margin: 0 8px;
+  background-color: var(--hover);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.shopping-cart .item-detail .item-price button {
+  border-radius: 2px;
+}
+
+/* style untuk scrollbar pada sopping cart */
+/* Untuk browser berbasis WebKit (Chrome, Safari) */
+.shopping-cart::-webkit-scrollbar {
+  width: 0.5em; /* Lebar scrollbar */
+}
+
+/* Untuk browser yang mendukung spesifikasi standar */
+.shopping-cart {
+  scrollbar-width: thin; /* Lebar scrollbar */
+  scrollbar-color: #888 #f5f5f5; /* Warna thumb scrollbar dan track scrollbar */
+}
+
+.shopping-cart::-webkit-scrollbar-track {
+  background-color: #f5f5f5; /* Warna track scrollbar */
+}
+
+.shopping-cart::-webkit-scrollbar-thumb {
+  background-color: #888; /* Warna thumb scrollbar */
+}
+
+/* checkout form */
+.form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 1px dashed black;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.form-container h5 {
+  text-align: center;
+  font-size: 1.5rem;
+  text-decoration: underline;
+}
+
+.form-container form {
+  width: 100%;
+  text-align: center;
+}
+
+.form-container label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  gap: 1.5rem;
+}
+
+.form-container span {
+  text-align: right;
+  font-size: 1.3rem;
+}
+
+.form-container input {
+  background-color: #ddd;
+  padding: 5px;
+  font-size: 1rem;
+  width: 70%;
+  border-radius: 5px;
+}
+
+.form-container .checkout-button {
+  padding: 6px 14px;
+  background-color: var(--hover);
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 20px;
+  margin: 1rem auto;
+  cursor: pointer;
+}
+
+.form-container .checkout-button.disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+/* shooping cart end */
+/* hero section start */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: url(../image/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* acra membuat gradasi */
+.hero::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(252, 231, 212) 10%,
+    rgba(204, 166, 131, 0) 80%
+  );
+}
+
+.hero .content {
+  width: 45%;
+  height: 30%;
+  margin-right: 10%;
+  margin-left: auto;
+  text-align: center;
+}
+
+.hero .content h1 {
+  font-size: 5em;
+  color: var(--text);
+  text-align: center;
+  text-shadow: 1px 1px 3px var(--button);
+  line-height: 5rem;
+}
+
+.hero .content p {
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  line-height: 1.4;
+  font-weight: 100;
+  text-shadow: 1px 1px 3px var(--button);
+  color: #82461e;
+  text-align: center;
+}
+
+.hero .content .cta {
+  text-align: center;
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  background-color: var(--text);
+  color: var(--primary);
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 3px var(--button);
+  transition: 0.2s linear;
+}
+
+.hero .content .cta:hover {
+  background-color: var(--hover);
+  color: #fff;
+}
+
+/* hero section end */
+
+/* about section start */
+.about,
+.menu,
+.contact,
+.products {
+  padding: 8rem 7% 1.4rem;
+  padding-bottom: 3rem;
+}
+
+.about h2,
+.menu h2,
+.contact h2,
+.products h2 {
+  color: var(--text);
+  text-align: center;
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+}
+
+.about h2 span,
+.menu h2 span,
+.contact h2 span,
+.products h2 span {
+  color: var(--main);
+}
+
+.about .row {
+  display: flex;
+}
+
+.about .row .about-img {
+  flex: 1 1 45rem;
+}
+
+.about .row .about-img img {
+  width: 95%;
+  border-radius: 5px;
+}
+
+.about .row .content {
+  flex: 1 1 45rem;
+  padding: 0 1rem;
+}
+
+.about .row .content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.about .row .content p {
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 100;
+}
+/* about section end */
+
+.menu h2,
+.contact h2,
+.products h2 {
+  margin-bottom: 1rem;
+}
+
+.menu p,
+.contact p,
+.products p {
+  text-align: center;
+  margin: auto;
+  max-width: 40rem;
+  font-size: 1.5rem;
+  font-weight: 100;
+  line-height: 1, 6;
+}
+/* style menu start */
+.menu .row {
+  display: flex;
+  margin-top: 5rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.menu .row .menu-card {
+  text-align: center;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.menu .row .menu-card img {
+  border-radius: 50%;
+  max-width: 70%;
+  height: auto;
+}
+
+.menu .row .menu-card .menu-card-title {
+  margin: 1rem auto 0.5rem;
+  font-size: 1.5rem;
+}
+
+/* product section */
+.products .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.products .product-card {
+  text-align: center;
+  border: 1px solid var(--text);
+}
+
+.products .product-icon {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.products .product-icon a {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: var(--text);
+  margin: 0.3rem;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease-in-out;
+}
+
+.products .product-icon a i {
+  font-size: 1.5rem;
+}
+
+.products .product-icon a:hover {
+  background-color: var(--button);
+  border: 1px solid var(--text);
+}
+
+.products .product-img {
+  padding: 1rem 0;
+}
+
+.products .product-img img {
+  height: 20rem;
+}
+
+.products .product-content h3 {
+  font-size: 2rem;
+}
+
+.products .product-start {
+  font-size: 1.8rem;
+  padding: 0.8rem;
+  color: var(--main);
+}
+
+.products .product-start .star-full {
+  fill: var(--main);
+}
+
+.products .product-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* product section end */
+
+/* style menu end */
+
+/* style section contact start */
+.contact .row {
+  display: flex; /*ini memungkinkan anak dari halaman akan di atur secara horisontal atau vertikal*/
+  background: var(--button);
+  border-radius: 5px;
+  margin-top: 3rem;
+}
+
+.contact .row .map {
+  flex: 1 1 45rem; /*untuk menentukan bagaimana elemen anak harus diubah ukurannya berdasarkan ruang yang tersedia*/
+  width: 100%;
+  object-fit: cover; /* membuat objek di skala sehingga objek tetap dalam ukuran elemen dan mencakup seluruh elemen tanpa distorsi.*/
+}
+
+.contact .row form {
+  flex: 1 1 45rem; /*untuk menentukan bagaimana elemen anak harus diubah ukurannya berdasarkan ruang yang tersedia*/
+  padding: 20px 30px;
+  text-align: center;
+}
+
+.contact .row form .inputbox {
+  display: flex; /*membuat elemen anak dapat merespons dengan baik terhadap perubahan ukuran*/
+  align-items: center;
+  margin-top: 25px; /* digunakan untuk menentukan jumlah ruang yang ditinggalkan di atas elemen. */
+  margin-bottom: 25px; /* digunakan untuk menentukan jumlah ruang yang ditinggalkan di bawah elemen. */
+  background: var(--bg);
+  border: 1.3px solid var(--text);
+  border-radius: 10px;
+}
+
+.contact .row form .inputbox .icon {
+  color: var(--text);
+  margin-left: 10px;
+}
+
+.contact .row form .inputbox input {
+  width: 100%;
+  padding: 15px;
+  font-size: 15pt;
+  color: #fff;
+  text-transform: none; /*menyatakan bahwa teks tidak akan diubah dari bentuk aslinya.*/
+  background: none; /* tidak ada warna latar belakang yang ditentukan dan warna latar belakang akan mengikuti warna latar belakang dari elemen induknya.*/
+}
+
+.contact .row .cta {
+  text-align: center;
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  background-color: var(--text);
+  color: var(--primary);
+  border: 1px solid var(--text);
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 3px var(--button);
+  transition: 0.2s linear;
+  cursor: pointer;
+}
+
+.contact .row .cta:hover {
+  background-color: var(--hover);
+  color: #fff;
+}
+/* style section contact end */
+
+/* footer start */
+footer {
+  background-color: var(--text);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}
+
+footer .social {
+  padding: 1rem 0;
+}
+
+footer .social a {
+  color: var(--primary);
+  margin: 1rem;
+}
+
+footer .social a:hover,
+footer .link a:hover {
+  color: #fff;
+}
+
+footer .cta {
+  margin-bottom: 1.4rem;
+}
+
+footer .cta a {
+  font-size: 1.2rem;
+  color: var(--primary);
+  padding: 2px 10px;
+  margin-inline: auto;
+  border-radius: 8px;
+  border: 2px solid var(--bg);
+  background-color: transparent;
+  gap: 10px;
+  margin-right: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+footer .cta a:hover {
+  background-color: var(--hover);
+}
+
+footer .credit p {
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+footer .credit a {
+  color: var(--bg);
+  font-size: 1.2rem;
+  text-decoration: underline;
+  font-style: italic;
+}
+footer .credit a:hover {
+  color: #fff;
+}
+
+/* footer end */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-container {
+  position: relative;
+  background-color: var(--text);
+  color: #fff;
+  width: 80%;
+  margin: 15% auto;
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: animateModal 0.5s;
+}
+
+.modal-container .close-icon {
+  position: absolute;
+  top: 10px;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--primary);
+  transition: 0.2s ease-in-out;
+}
+
+.close-icon:hover {
+  color: var(--main);
+}
+
+/* moda animation */
+@keyframes animateModal {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.modal-content img {
+  height: 20rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+.modal-content h3 {
+  font-size: 1.7rem;
+}
+
+.modal-content p {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  margin-top: 1.2rem;
+}
+
+.modal-content a {
+  display: flex;
+  gap: 0.5rem;
+  width: 11rem;
+  background-color: var(--hover);
+  color: var(--primary);
+  margin-top: 1rem;
+  padding: 0.5rem 1.6rem;
+  border-radius: 15px;
+  transition: 0.2s ease-in-out;
+}
+
+.modal-content a:hover {
+  color: #fff;
+  background-color: #a4181f;
+}
+
+.modal-content span {
+  font-size: 1.3rem;
+}
+
+.modal-container .product-price {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.modal-container .product-start {
+  margin-top: 5px;
+  color: var(--main);
+}
+
+.modal-container .product-start .star-full {
+  color: var(--main);
+  fill: var(--main);
+}
+
+.modal-container .product-price span {
+  text-decoration: line-through;
+  font-weight: lighter;
+  font-size: 1rem;
+}
+
+.modal-container .shop {
+  width: 1.5rem;
+}
+
+.modal-container .shop span {
+  font-size: 0.5rem;
+}
+/* modal box start */
+
+/* todo media Queries */
+/* todo Dekstrop */
+@media (max-width: 1366px) {
+  html {
+    font-size: 75%;
+  }
+}
+/* todo laptop */
+@media (max-width: 990px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+/* todo tablet */
+@media (max-width: 768px) {
+  html {
+    font-size: 70%;
+  }
+
+  #hamburger-menu {
+    display: inline-block;
+  }
+
+  .navbar .navbar-nav {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    background-color: var(--text);
+    width: 25rem;
+    height: 100vh;
+    transition: 0.3s;
+  }
+
+  .navbar .navbar-nav.active {
+    right: 0;
+  }
+
+  .navbar .navbar-nav a {
+    color: var(--primary);
+    display: block;
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+  }
+
+  .navbar .navbar-nav a:hover {
+    color: var(--button);
+  }
+
+  .navbar .navbar-nav a::after {
+    transform-origin: 0 0;
+  }
+
+  .navbar .navbar-nav a:hover::after {
+    transform: scaleX(0.2);
+    border-bottom: 0.1rem solid var(--button);
+  }
+
+  .navbar .search-form {
+    width: 90%;
+    right: 2rem;
+  }
+
+  .contact .row {
+    flex-wrap: wrap;
+  }
+  .contact .row .map {
+    height: 30rem;
+  }
+
+  .contact .row form {
+    padding-top: 0;
+  }
+
+  .modal-content {
+    flex-wrap: wrap;
+  }
+}
+
+/* todo mobile */
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+  .navbar .navbar-extra a {
+    width: 20%;
+  }
+
+  .hero .content {
+    width: 80%;
+    height: 30%;
+    text-align: center;
+  }
+
+  .hero .content .cta {
+    margin-bottom: 10rem;
+  }
+
+  .about .row {
+    display: block;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url(../image/tablet.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .hero .content p {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    line-height: 1.4;
+    font-weight: 100;
+    text-shadow: 1px 1px 5px var(--button);
+    color: #6b2e06;
+    text-align: center;
+  }
+
+  .menu {
+    padding-top: 6rem;
+  }
+  .menu .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .menu .row .menu-card {
+    width: 40%;
+    box-sizing: border-box;
+    margin: auto;
+    margin-inline: auto;
+  }
+
+  .menu .row .menu-card .menu-card-img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .menu-card + .menu-card {
+    margin-top: 10px;
+  }
+
+  .menu .row .menu-card .menu-card-title {
+    font-size: 1.3rem;
+  }
+
+  .menu .row .menu-card .menu-card-price {
+    font-size: 1rem;
+  }
+}
